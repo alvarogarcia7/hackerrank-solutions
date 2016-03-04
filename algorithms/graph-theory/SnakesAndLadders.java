@@ -9,13 +9,13 @@ public class Solution {
     private SnakesAndLaddersBoard[] testCases;
     private List<String> results;
 
-    public Solution(Scanner scanner, String[] args) {
+    public Solution(Scanner scanner) {
         this.scanner = scanner;
         results = new ArrayList<>();
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution(new Scanner(System.in), args);
+        Solution solution = new Solution(new Scanner(System.in));
         solution.calculate().print();
     }
 
@@ -70,11 +70,19 @@ public class Solution {
         public SnakesAndLaddersBoard() {
             movements = new HashMap<>();
             rollsToGetTo = new int[101];
-            rollsToGetTo[1] = 0;
+            startOnSquare1();
+            initializeRolls();
+            initializeMovements();
+        }
+
+        private void initializeRolls() {
             for (int i = 2; i < rollsToGetTo.length; i++) {
                 rollsToGetTo[i] = Integer.MAX_VALUE;
             }
-            initializeMovements();
+        }
+
+        private void startOnSquare1() {
+            rollsToGetTo[1] = 0;
         }
 
         private Stream<Integer> positions() {

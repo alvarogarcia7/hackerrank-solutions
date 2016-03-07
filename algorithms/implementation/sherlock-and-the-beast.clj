@@ -1,3 +1,5 @@
+;; https://www.hackerrank.com/challenges/sherlock-and-the-beast
+
 (use '[clojure.string :only (split triml)])
 
 (defn read-int []

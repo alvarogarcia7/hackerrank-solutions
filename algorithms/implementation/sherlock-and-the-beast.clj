@@ -6,7 +6,8 @@
 (defn candidate-sums[N] 
   (->> (range)
     (map #(* 3 %))
-    (take-while #(<= % N))))
+    (take-while #(<= % N))
+    (reverse)))
 
 (defn find-decent-composition [N]
   (->> (candidate-sums N)
@@ -31,4 +32,3 @@
     (map make-decent)
     (map println)
     doall))
-    

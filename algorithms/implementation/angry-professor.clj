@@ -4,10 +4,12 @@
   (map #(Integer/parseInt %) (split (read-line) #"\s+")))
 
 (defn is-canceled? [testcase]
-  (< (count (filter #(>= 0 %) (:arrival-times testcase))) (:treshold testcase)))
+  (let [cancellation-treshold (:treshold testcase)
+        arrived-late (count (filter #(>= 0 %) (:arrival-times testcase)))]
+  (> cancellation-treshold arrived-late)))
 
 (let [t (Integer/parseInt (read-line))
-	    matrix (for [_ (range t)] (let [[students treshold] (read-ints)
+      matrix (for [_ (range t)] (let [[students treshold] (read-ints)
                                     arrival-times (take students (read-ints))]
                                     {:arrival-times arrival-times :treshold treshold}))]
   (->> matrix
